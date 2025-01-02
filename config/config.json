@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "jheer_sales",
+    "password": "jheer_sales",
+    "database": "jheer_sales_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "jheer_sales",
+    "password": "jheer_sales",
+    "database": "jheer_sales_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "jheer_sales",
+    "password": "jheer_sales",
+    "database": "jheer_sales_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
