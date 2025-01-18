@@ -90,6 +90,14 @@ This will start the application in **development mode**.
 
 ## GraphQL Setup
 
+Let's create sales type module, controller, resolver and entity to interact with our newly connected database.
+
+nest g module sales-type && nest g service sales-type && nest g resolver sales-type
+
+The above command will generate the users module, service and resolver and update the app.module.ts with the sales type module.
+
+Add the salesType entity code mentioned below inside the sales-type.entity.ts file and restart your development server to create the sales type table in the database.
+
 ### Soft Delete Implementation
 
 In this project, we implement a **soft delete** by adding a `deletedAt` field to the **SalesType** entity. Instead of permanently removing records, we set this field to the current timestamp when a record is deleted. This ensures that deleted records are retained in the database for auditing purposes, but are excluded from normal queries.
