@@ -1,22 +1,23 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import { Field, ObjectType } from "@nestjs/graphql";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from "typeorm";
 
-@ObjectType() 
-@Entity('sales_type')
+@ObjectType()
+@Entity("sales_type")
 export class SalesType {
-  @Field() 
+  @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field() 
+  @Field()
   @Column()
   name: string;
 
-  @Field() 
+  @Field()
   @CreateDateColumn()
   createdAt: Date;
-
-  @Field({ nullable: true }) 
-  @Column({ nullable: true })
-  deletedAt: Date;
 }
