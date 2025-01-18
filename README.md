@@ -1,7 +1,7 @@
 
-# SalesType Management System with Soft Delete (GraphQL)
+# Jheer Sales Tracking and Management System
 
-This project implements a **SalesType Management System** using **NestJS** and **GraphQL**. It includes features such as **CRUD** operations with support for **soft delete** to avoid removing records physically from the database, making it possible to retain data for auditing or recovery purposes.
+This project implements a **Sales Tracking and Management System** using **NestJS** and **GraphQL**. It includes features such as **CRUD** operations with support for **soft delete** to avoid removing records physically from the database, making it possible to retain data for auditing or recovery purposes.
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ This project implements a **SalesType Management System** using **NestJS** and *
 
 ## Introduction
 
-This project provides a backend API to manage **Sales Types**. The API is built with **NestJS** and **GraphQL**, where the data is stored in a relational database (using **TypeORM**). 
+This project provides a backend API to manage **Jheer Sales Billing**. The API is built with **NestJS** and **GraphQL**, where the data is stored in a relational database (using **TypeORM**). 
 
 The key feature of this system is **soft deletion**, which involves setting a `deletedAt` timestamp instead of removing data from the database. This ensures that deleted records are retained in the database for auditing purposes, but are excluded from normal queries.
 
@@ -30,7 +30,7 @@ The key feature of this system is **soft deletion**, which involves setting a `d
 - **NestJS**: A framework for building scalable server-side applications with TypeScript.
 - **GraphQL**: A query language for APIs, allowing clients to request specific fields and get only what they need.
 - **TypeORM**: An ORM for TypeScript and JavaScript, which enables interaction with the relational database.
-- **PostgreSQL** (or any relational database): The database used to store the Sales Types and related information.
+- **PostgreSQL**: The database used to store the Sales Types and related information.
 
 ## Project Setup
 
@@ -54,8 +54,13 @@ cd jheer_backend
 ```bash
 npm install
 ```
+### 4. Run Docker compose
+Make sure docker compose file exist and run the docker:
+```bash
+docker-compose up
+```
 
-### 4. Set Up Database
+### 5. Set Up Database
 
 Make sure your PostgreSQL database is running. You can use Docker to run PostgreSQL locally:
 
@@ -63,20 +68,19 @@ Make sure your PostgreSQL database is running. You can use Docker to run Postgre
 docker run --name sales-type-db -e POSTGRES_PASSWORD=your_password -e POSTGRES_DB=sales_type -p 5432:5432 -d postgres
 ```
 
-### 5. Set Up Environment Variables
+### 6. Set Up Environment Variables
 
 Create a `.env` file in the root directory of the project and add the following variables:
 
 ```env
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=your_password
-DATABASE_NAME=sales_type
-GRAPHQL_PLAYGROUND=true
+DB_USER=your_db_user
+DB_PASSWORD=db_password
+DB_HOST=localhost 
+DB_NAME=your_db,
+PORT=3000
 ```
 
-### 6. Run the Application
+### 7. Run the Application
 
 ```bash
 npm run start:dev
