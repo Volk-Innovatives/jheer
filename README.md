@@ -45,8 +45,8 @@ You can download and install it from [here](https://nodejs.org/).
 ### 2. Clone the Repository
 
 ```bash
-git clone https://github.com/your-repo/sales-type-management.git
-cd sales-type-management
+git clone https://github.com/Volk-Innovatives/jheer.git
+cd jheer_backend
 ```
 
 ### 3. Install Dependencies
