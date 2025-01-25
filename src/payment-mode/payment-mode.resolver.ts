@@ -17,7 +17,7 @@ export class PaymentModeResolver {
     return this.paymentModeService.findOne(id);
   }
 
-  @Mutation(() => PaymentMode)
+  @Mutation(() => PaymentMode, { name: "createPaymentMode" })
   createPaymentMode(
     @Args("createPaymentModeInput") createPaymentModeDto: CreatePaymentModeDto
   ): Promise<PaymentMode> {

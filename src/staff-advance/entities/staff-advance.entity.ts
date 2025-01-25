@@ -4,7 +4,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  Decimal128,
 } from "typeorm";
 
 @ObjectType()
@@ -20,7 +19,7 @@ export class StaffAdvance {
 
   @Field()
   @Column()
-  amount: Decimal128;
+  amount: number;
 
   @Field()
   @Column()

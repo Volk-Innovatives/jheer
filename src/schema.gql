@@ -13,17 +13,100 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type PaymentMode {
+  id: Float!
+  name: String!
+  createdAt: DateTime!
+}
+
+type StaffAdvance {
+  id: Float!
+  date: DateTime!
+  amount: Float!
+  staff_id: Float!
+  status: String!
+  createdAt: DateTime!
+}
+
+type Staff {
+  id: Float!
+  name: String!
+  email: String!
+  contact: Float!
+  secondaryContact: Float!
+  citizenship: String!
+  bankAccount: String!
+  bankQR: String!
+  salary: Float!
+  createdAt: DateTime!
+}
+
 type Query {
   getAllSalesTypes: [SalesType!]!
   getSalesType(id: Int!): SalesType!
+  getAllPaymentModes: [PaymentMode!]!
+  getPaymentMode(id: Int!): PaymentMode!
+  getAllStaffAdvances: [StaffAdvance!]!
+  getStaffAdvance(id: Int!): StaffAdvance!
+  getAllStaffs: [Staff!]!
+  getStaff(id: Int!): Staff!
 }
 
 type Mutation {
   createSalesType(createSalesTypeInput: CreateSalesTypeDto!): SalesType!
   updateSalesType(id: Int!, updateSalesTypeInput: CreateSalesTypeDto!): SalesType!
   deleteSalesType(id: Int!): String!
+  createPaymentMode(createPaymentModeInput: CreatePaymentModeDto!): PaymentMode!
+  updatePaymentMode(id: Int!, updatePaymentModeInput: CreatePaymentModeDto!): PaymentMode!
+  deletePaymentMode(id: Int!): String!
+  createStaffAdvance(createStaffAdvanceInput: CreateStaffAdvanceDto!): StaffAdvance!
+  updateStaffAdvance(id: Int!, updateStaffAdvanceInput: UpdateStaffAdvanceDto!): StaffAdvance!
+  deleteStaffAdvance(id: Int!): String!
+  createStaff(createStaffInput: CreateStaffDto!): Staff!
+  updateStaff(id: Int!, updateStaffInput: UpdateStaffDto!): Staff!
+  deleteStaff(id: Int!): String!
 }
 
 input CreateSalesTypeDto {
   name: String!
+}
+
+input CreatePaymentModeDto {
+  name: String!
+}
+
+input CreateStaffAdvanceDto {
+  date: DateTime!
+  amount: Float!
+  staff_id: Float!
+  status: String!
+}
+
+input UpdateStaffAdvanceDto {
+  date: DateTime!
+  amount: Float!
+  staff_id: Float!
+  status: String!
+}
+
+input CreateStaffDto {
+  name: String!
+  email: String!
+  contact: Float!
+  secondaryContact: Float!
+  citizenship: String!
+  bankAccount: String!
+  bankQR: String!
+  salary: Float!
+}
+
+input UpdateStaffDto {
+  name: String!
+  email: String!
+  contact: Float!
+  secondaryContact: Float!
+  citizenship: String!
+  bankAccount: String!
+  bankQR: String!
+  salary: Float!
 }

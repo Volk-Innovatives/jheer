@@ -1,6 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsDecimal, IsEmail, IsNumber, IsString, Length } from 'class-validator';
-import { Decimal128 } from 'typeorm';
 
 @InputType()
 export class UpdateStaffDto {
@@ -43,6 +42,6 @@ export class UpdateStaffDto {
   @Field()
   @IsDecimal()
   @Length(3, 255)
-  salary: Decimal128;
+  salary: number;
 
 }

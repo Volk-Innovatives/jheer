@@ -44,7 +44,7 @@ export class Staff {
 
   @Field()
   @Column()
-  salary: Decimal128;
+  salary: number;
   
   @Field()
   @CreateDateColumn()
