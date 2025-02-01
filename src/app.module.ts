@@ -6,6 +6,7 @@ import { TypeOrmModule } from './datasource/typeorm.module';
 import { PaymentModeModule } from './payment-mode/payment-mode.module';
 import { StaffAdvanceModule } from './staff-advance/staff-advance.module';
 import { StaffModule } from './staff/staff.module';
+import { VendorModule } from './vendor/vendor.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { StaffModule } from './staff/staff.module';
     PaymentModeModule,
     StaffAdvanceModule,
     StaffModule,
+    VendorModule,
   ],
 })
 export class AppModule {}
