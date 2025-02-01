@@ -7,6 +7,7 @@ import { PaymentModeModule } from './payment-mode/payment-mode.module';
 import { StaffAdvanceModule } from './staff-advance/staff-advance.module';
 import { StaffModule } from './staff/staff.module';
 import { VendorModule } from './vendor/vendor.module';
+import { ExpenseModule } from './expense/expense.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { VendorModule } from './vendor/vendor.module';
     StaffAdvanceModule,
     StaffModule,
     VendorModule,
+    ExpenseModule,
   ],
 })
 export class AppModule {}

@@ -58,6 +58,21 @@ type Vendor {
   deletedAt: DateTime!
 }
 
+type Expense {
+  id: Float!
+  name: String!
+  date: String!
+  amount: Float!
+  vendor_id: Float!
+  cheque_no: String!
+  payment_mode_id: Float!
+  due_date: String!
+  status: Boolean!
+  bill_no: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   getAllSalesTypes: [SalesType!]!
   getSalesType(id: Int!): SalesType!
@@ -69,6 +84,8 @@ type Query {
   getStaff(id: Int!): Staff!
   getAllVendors: [Vendor!]!
   getVendor(id: Int!): Vendor!
+  getAllExpenses: [Expense!]!
+  getExpense(id: Int!): Expense!
 }
 
 type Mutation {
@@ -87,6 +104,9 @@ type Mutation {
   createVendor(createVendorInput: CreateVendorDto!): Vendor!
   updateVendor(id: Int!, updateVendorInput: UpdateVendorDto!): Vendor!
   deleteVendor(id: Int!): String!
+  createExpense(createExpenseInput: CreateExpenseDto!): Expense!
+  updateExpense(id: Int!, updateExpenseInput: UpdateExpenseDto!): Expense!
+  deleteExpense(id: Int!): String!
 }
 
 input CreateSalesTypeDto {
@@ -157,4 +177,28 @@ input UpdateVendorDto {
   secondary_contact: String!
   bank_details: String!
   bank_qr: String!
+}
+
+input CreateExpenseDto {
+  name: String!
+  date: String!
+  amount: Float!
+  vendor_id: Float!
+  cheque_no: String!
+  payment_mode_id: Float!
+  due_date: String!
+  status: Boolean!
+  bill_no: String!
+}
+
+input UpdateExpenseDto {
+  name: String!
+  date: String!
+  amount: Float!
+  vendor_id: Float!
+  cheque_no: String!
+  payment_mode_id: Float!
+  due_date: String!
+  status: Boolean!
+  bill_no: String!
 }
