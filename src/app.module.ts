@@ -3,6 +3,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { SalesTypeModule } from './sales-type/sales-type.module';
 import { TypeOrmModule } from './datasource/typeorm.module';
+import { PaymentModeModule } from './payment-mode/payment-mode.module';
+import { StaffAdvanceModule } from './staff-advance/staff-advance.module';
+import { StaffModule } from './staff/staff.module';
 
 @Module({
   imports: [
@@ -13,6 +16,9 @@ import { TypeOrmModule } from './datasource/typeorm.module';
     }),
     TypeOrmModule,
     SalesTypeModule,
+    PaymentModeModule,
+    StaffAdvanceModule,
+    StaffModule,
   ],
 })
 export class AppModule {}
