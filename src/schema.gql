@@ -73,6 +73,17 @@ type Expense {
   updatedAt: DateTime!
 }
 
+type Sales {
+  id: Float!
+  date: DateTime!
+  amount: Float!
+  remarks: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  salesTypeId: Float!
+  paymentModeId: Float!
+}
+
 type Query {
   getAllSalesTypes: [SalesType!]!
   getSalesType(id: Int!): SalesType!
@@ -86,6 +97,8 @@ type Query {
   getVendor(id: Int!): Vendor!
   getAllExpenses: [Expense!]!
   getExpense(id: Int!): Expense!
+  getAllSales: [Sales!]!
+  getSales(id: Int!): Sales!
 }
 
 type Mutation {
@@ -107,6 +120,9 @@ type Mutation {
   createExpense(createExpenseInput: CreateExpenseDto!): Expense!
   updateExpense(id: Int!, updateExpenseInput: UpdateExpenseDto!): Expense!
   deleteExpense(id: Int!): String!
+  createSales(createSalesInput: CreateSalesDto!): Sales!
+  updateSales(id: Int!, updateSalesInput: UpdateSalesDto!): Sales!
+  deleteSales(id: Int!): String!
 }
 
 input CreateSalesTypeDto {
@@ -201,4 +217,20 @@ input UpdateExpenseDto {
   due_date: String!
   status: Boolean!
   bill_no: String!
+}
+
+input CreateSalesDto {
+  date: DateTime!
+  amount: Float!
+  remarks: String!
+  salesTypeId: Float!
+  paymentModeId: Float!
+}
+
+input UpdateSalesDto {
+  date: DateTime!
+  amount: Float!
+  remarks: String!
+  salesTypeId: Float!
+  paymentModeId: Float!
 }
