@@ -8,7 +8,6 @@ config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    // FIXME use env variables for origin
     origin: 'http://localhost:3000',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
