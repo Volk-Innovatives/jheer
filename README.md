@@ -92,7 +92,7 @@ This will start the application in **development mode**.
 
 Let's create sales type module, controller, resolver and entity to interact with our newly connected database.
 
-nest g module sales-type && nest g service sales-type && nest g resolver sales-type
+```nest g module sales-type && nest g service sales-type && nest g resolver sales-type```
 
 The above command will generate the users module, service and resolver and update the app.module.ts with the sales type module.
 
