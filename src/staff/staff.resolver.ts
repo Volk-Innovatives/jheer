@@ -14,7 +14,7 @@ export class StaffResolver {
   }
 
   @Query(() => Staff, { name: "getStaff" })
-  findOne(@Args("id", { type: () => Int }) id: number): Promise<Staff> {
+  findOne(@Args("id", { type: () => Int }) id: string): Promise<Staff> {
     return this.staffService.findOne(id);
   }
 
@@ -28,7 +28,7 @@ export class StaffResolver {
   // update Staff by ID
   @Mutation(() => Staff, { name: "updateStaff" })
   async updateStaff(
-    @Args("id", { type: () => Int }) id: number,
+    @Args("id", { type: () => Int }) id: string,
     @Args("updateStaffInput") updateStaffDto: UpdateStaffDto
   ): Promise<Staff> {
     return this.staffService.update(id, updateStaffDto);
@@ -36,7 +36,7 @@ export class StaffResolver {
 
   @Mutation(() => String, { name: "deleteStaff" })
   async deleteStaff(
-    @Args("id", { type: () => Int }) id: number
+    @Args("id", { type: () => Int }) id: string
   ): Promise<String> {
     return this.staffService.delete(id);
   }
