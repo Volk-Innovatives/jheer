@@ -29,7 +29,7 @@ type StaffAdvance {
 }
 
 type Staff {
-  id: Float!
+  id: ID!
   name: String!
   email: String!
   contact: Float!

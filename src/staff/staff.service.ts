@@ -16,7 +16,7 @@ export class StaffService {
     return this.staffRepository.find();
   }
 
-  async findOne(id: number): Promise<Staff> {
+  async findOne(id: string): Promise<Staff> {
     if (!id) {
       throw new Error("Staff ID is required");
     }
@@ -31,7 +31,7 @@ export class StaffService {
     const staff = this.staffRepository.create(createStaffDto);
     return this.staffRepository.save(staff);
   }
-  async update(id: number, updateStaffDto: UpdateStaffDto): Promise<Staff> {
+  async update(id: string, updateStaffDto: UpdateStaffDto): Promise<Staff> {
     const staff = await this.staffRepository.findOne({ where: { id } });
     if (!staff) {
       throw new Error("Staff  ID not found");
@@ -50,7 +50,7 @@ export class StaffService {
     return this.staffRepository.save(staff);
   }
 
-  async delete(id: number): Promise<String> {
+  async delete(id: string): Promise<String> {
     const staff = await this.staffRepository.findOne({ where: { id } });
     if (!staff) {
       throw new Error("Staff ID not found");
