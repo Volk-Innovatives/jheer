@@ -14,7 +14,7 @@ export class SalesResolver {
   }
 
   @Query(() => Sales, { name: "getSales" })
-  findOne(@Args("id", { type: () => Int }) id: number): Promise<Sales> {
+  findOne(@Args("id", { type: () => Int }) id: string): Promise<Sales> {
     return this.salesService.findOne(id);
   }
 
@@ -28,7 +28,7 @@ export class SalesResolver {
   // update Sales by ID
   @Mutation(() => Sales, { name: "updateSales" })
   async updateSales(
-    @Args("id", { type: () => Int }) id: number,
+    @Args("id", { type: () => Int }) id: string,
     @Args("updateSalesInput") updateSalesDto: UpdateSalesDto
   ): Promise<Sales> {
     return this.salesService.update(id, updateSalesDto);
@@ -36,7 +36,7 @@ export class SalesResolver {
 
   @Mutation(() => String, { name: "deleteSales" })
   async deleteSales(
-    @Args("id", { type: () => Int }) id: number
+    @Args("id", { type: () => Int }) id: string
   ): Promise<String> {
     return this.salesService.delete(id);
   }

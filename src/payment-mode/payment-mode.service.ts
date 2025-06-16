@@ -16,7 +16,7 @@ export class PaymentModeService {
     return this.paymentModeRepository.find();
   }
 
-  async findOne(id: number): Promise<PaymentMode> {
+  async findOne(id: string): Promise<PaymentMode> {
     if (!id) {
       throw new Error("Payment Mode ID is required");
     }
@@ -32,7 +32,7 @@ export class PaymentModeService {
     return this.paymentModeRepository.save(paymentMode);
   }
   async update(
-    id: number,
+    id: string,
     UpdatePaymentModeDto: UpdatePaymentModeDto
   ): Promise<PaymentMode> {
     const paymentMode = await this.paymentModeRepository.findOne({ where: { id } });
@@ -46,7 +46,7 @@ export class PaymentModeService {
     return this.paymentModeRepository.save(paymentMode);
   }
 
-  async delete(id: number): Promise<String> {
+  async delete(id: string): Promise<String> {
     const paymentMode = await this.paymentModeRepository.findOne({ where: { id } });
     if (!paymentMode) {
       throw new Error("Payment Mode not found");

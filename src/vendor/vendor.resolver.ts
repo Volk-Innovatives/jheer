@@ -14,7 +14,7 @@ export class VendorResolver {
   }
 
   @Query(() => Vendor, { name: "getVendor" })
-  findOne(@Args("id", { type: () => Int }) id: number): Promise<Vendor> {
+  findOne(@Args("id", { type: () => Int }) id: string): Promise<Vendor> {
     return this.vendorService.findOne(id);
   }
 
@@ -28,7 +28,7 @@ export class VendorResolver {
   // update Vendor by ID
   @Mutation(() => Vendor, { name: "updateVendor" })
   async updateVendor(
-    @Args("id", { type: () => Int }) id: number,
+    @Args("id", { type: () => Int }) id: string,
     @Args("updateVendorInput") updateVendorDto: UpdateVendorDto
   ): Promise<Vendor> {
     return this.vendorService.update(id, updateVendorDto);
@@ -36,7 +36,7 @@ export class VendorResolver {
 
   @Mutation(() => String, { name: "deleteVendor" })
   async deleteVendor(
-    @Args("id", { type: () => Int }) id: number
+    @Args("id", { type: () => Int }) id: string
   ): Promise<String> {
     return this.vendorService.delete(id);
   }

@@ -16,7 +16,7 @@ export class SalesService {
     return this.salesRepository.find();
   }
 
-  async findOne(id: number): Promise<Sales> {
+  async findOne(id: string): Promise<Sales> {
     if (!id) {
       throw new Error("Sales ID is required");
     }
@@ -32,7 +32,7 @@ export class SalesService {
     return this.salesRepository.save(sales);
   }
   async update(
-    id: number,
+    id: string,
     updateSalesDto: UpdateSalesDto
   ): Promise<Sales> {
     const sales = await this.salesRepository.findOne({ where: { id } });
@@ -50,7 +50,7 @@ export class SalesService {
     return this.salesRepository.save(sales);
   }
 
-  async delete(id: number): Promise<String> {
+  async delete(id: string): Promise<String> {
     const sales = await this.salesRepository.findOne({ where: { id } });
     if (!sales) {
       throw new Error("Sales not found");
