@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type SalesType {
-  id: Float!
+  id: ID!
   name: String!
   createdAt: DateTime!
 }
@@ -14,13 +14,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type PaymentMode {
-  id: Float!
+  id: ID!
   name: String!
   createdAt: DateTime!
 }
 
 type StaffAdvance {
-  id: Float!
+  id: ID!
   date: DateTime!
   amount: Float!
   staff_id: Float!
@@ -42,7 +42,7 @@ type Staff {
 }
 
 type Vendor {
-  id: Float!
+  id: ID!
   name: String!
   pan_no: String!
   contact_person: String!
@@ -59,7 +59,7 @@ type Vendor {
 }
 
 type Expense {
-  id: Float!
+  id: String!
   name: String!
   date: String!
   amount: Float!
@@ -74,7 +74,7 @@ type Expense {
 }
 
 type Sales {
-  id: Float!
+  id: ID!
   date: DateTime!
   amount: Float!
   remarks: String!

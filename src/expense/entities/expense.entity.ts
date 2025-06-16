@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -12,7 +12,7 @@ import {
 export class Expense {
   @Field()
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Field()
   @Column()

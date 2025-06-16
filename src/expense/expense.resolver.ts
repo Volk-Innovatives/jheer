@@ -14,7 +14,7 @@ export class ExpenseResolver {
   }
 
   @Query(() => Expense, { name: "getExpense" })
-  findOne(@Args("id", { type: () => Int }) id: number): Promise<Expense> {
+  findOne(@Args("id", { type: () => Int }) id: string): Promise<Expense> {
     return this.ExpenseService.findOne(id);
   }
 
@@ -28,7 +28,7 @@ export class ExpenseResolver {
   // update Expense by ID
   @Mutation(() => Expense, { name: "updateExpense" })
   async updateExpense(
-    @Args("id", { type: () => Int }) id: number,
+    @Args("id", { type: () => Int }) id: string,
     @Args("updateExpenseInput") updateExpenseDto: UpdateExpenseDto
   ): Promise<Expense> {
     return this.ExpenseService.update(id, updateExpenseDto);
@@ -36,7 +36,7 @@ export class ExpenseResolver {
 
   @Mutation(() => String, { name: "deleteExpense" })
   async deleteExpense(
-    @Args("id", { type: () => Int }) id: number
+    @Args("id", { type: () => Int }) id: string
   ): Promise<String> {
     return this.ExpenseService.delete(id);
   }
