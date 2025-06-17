@@ -2,10 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type SalesType {
+type Vendor {
   id: ID!
   name: String!
+  pan_no: String!
+  contact_person: String!
+  contact: String!
+  email: String!
+  address: String!
+  image: String!
+  secondary_contact: String!
+  bank_details: String!
+  bank_qr: String!
   createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime!
+  expenses: [Expense!]!
 }
 
 """
@@ -13,10 +25,49 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Expense {
+  id: String!
+  name: String!
+  date: String!
+  amount: Float!
+  vendor_id: Float!
+  vendor: Vendor!
+  cheque_no: String!
+  payment_mode_id: Float!
+  paymentMode: PaymentMode!
+  due_date: String!
+  status: Boolean!
+  bill_no: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type PaymentMode {
   id: ID!
   name: String!
   createdAt: DateTime!
+  sales: [Sales!]
+  expenses: [Expense!]
+}
+
+type Sales {
+  id: ID!
+  date: DateTime!
+  amount: Float!
+  remarks: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  salesType: SalesType!
+  salesTypeId: Float!
+  paymentMode: PaymentMode!
+  paymentModeId: Float!
+}
+
+type SalesType {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  sales: [Sales!]
 }
 
 type StaffAdvance {
@@ -39,49 +90,6 @@ type Staff {
   bankQR: String!
   salary: Float!
   createdAt: DateTime!
-}
-
-type Vendor {
-  id: ID!
-  name: String!
-  pan_no: String!
-  contact_person: String!
-  contact: String!
-  email: String!
-  address: String!
-  image: String!
-  secondary_contact: String!
-  bank_details: String!
-  bank_qr: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  deletedAt: DateTime!
-}
-
-type Expense {
-  id: String!
-  name: String!
-  date: String!
-  amount: Float!
-  vendor_id: Float!
-  cheque_no: String!
-  payment_mode_id: Float!
-  due_date: String!
-  status: Boolean!
-  bill_no: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type Sales {
-  id: ID!
-  date: DateTime!
-  amount: Float!
-  remarks: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  salesTypeId: Float!
-  paymentModeId: Float!
 }
 
 type Query {

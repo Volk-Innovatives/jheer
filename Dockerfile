@@ -20,7 +20,7 @@ COPY .env .env
 RUN npm run build
 
 # Expose app port
-EXPOSE 3000
+EXPOSE 8000
 
 # Start the app
 CMD ["npm", "run", "start:prod"]

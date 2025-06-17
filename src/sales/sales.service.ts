@@ -13,14 +13,19 @@ export class SalesService {
   ) {}
 
   findAll(): Promise<Sales[]> {
-    return this.salesRepository.find();
+    return this.salesRepository.find({
+      relations: ['salesType', 'paymentMode']
+    });
   }
 
   async findOne(id: string): Promise<Sales> {
     if (!id) {
       throw new Error("Sales ID is required");
     }
-    const result = await this.salesRepository.findOne({ where: { id } });
+    const result = await this.salesRepository.findOne({ 
+      where: { id },
+      relations: ['salesType', 'paymentMode']
+    });
     if (!result) {
       throw new Error("Sales not found");
     }

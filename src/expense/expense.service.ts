@@ -14,14 +14,18 @@ export class ExpenseService {
     ) {}
 
     findAll(): Promise<Expense[]> {
-        return this.ExpenseRepository.find();
+        return this.ExpenseRepository.find({
+            relations: ["vendor", "paymentMode"]
+        });
     }
 
     async findOne(id: string): Promise<Expense> {
     if (!id) {
         throw new Error("Expense ID is required");
     }
-    const result = await this.ExpenseRepository.findOne({ where: { id } });
+    const result = await this.ExpenseRepository.findOne({ where: { id },
+        relations: ["vendor", "paymentMode"]
+     });
     if (!result) {
         throw new Error("Expense ID not found");
     }

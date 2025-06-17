@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
+import { SalesType } from "../../sales-type/entities/sales-type.entity";
+import { PaymentMode } from "../../payment-mode/entities/payment-mode.entity";
 
 @ObjectType()
 @Entity("sales")
@@ -33,9 +37,19 @@ export class Sales {
   @CreateDateColumn()
   updatedAt: Date;
 
+  @Field(() => SalesType)
+  @ManyToOne(() => SalesType, { eager: true })
+  @JoinColumn({ name: "salesTypeId" })
+  salesType: SalesType;
+
   @Field()
   @Column()
   salesTypeId: number;
+
+  @Field(() => PaymentMode)
+  @ManyToOne(() => PaymentMode, { eager: true })
+  @JoinColumn({ name: "paymentModeId" })
+  paymentMode: PaymentMode;
 
   @Field()
   @Column()
