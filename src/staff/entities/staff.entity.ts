@@ -1,10 +1,12 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { StaffAdvance } from "src/staff-advance/entities/staff-advance.entity";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   Decimal128,
+  OneToMany,
 } from "typeorm";
 
 @ObjectType()
@@ -49,4 +51,8 @@ export class Staff {
   @Field()
   @CreateDateColumn()
   createdAt: Date;
+
+  @Field(() => [StaffAdvance])
+  @OneToMany(() => StaffAdvance, (staffAdvance) => staffAdvance.staff)
+  staffAdvance: StaffAdvance[];
 }
