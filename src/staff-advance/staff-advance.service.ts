@@ -16,7 +16,7 @@ export class StaffAdvanceService {
     return this.staffAdvanceRepository.find();
   }
 
-  async findOne(id: number): Promise<StaffAdvance> {
+  async findOne(id: string): Promise<StaffAdvance> {
     if (!id) {
       throw new Error("Staff Advance ID is required");
     }
@@ -34,7 +34,7 @@ export class StaffAdvanceService {
     return this.staffAdvanceRepository.save(staffAdvance);
   }
   async update(
-    id: number,
+    id: string,
     updateStaffAdvanceDto: UpdateStaffAdvanceDto
   ): Promise<StaffAdvance> {
     const staffAdvance = await this.staffAdvanceRepository.findOne({
@@ -53,7 +53,7 @@ export class StaffAdvanceService {
     return this.staffAdvanceRepository.save(staffAdvance);
   }
 
-  async delete(id: number): Promise<String> {
+  async delete(id: string): Promise<String> {
     const staffAdvance = await this.staffAdvanceRepository.findOne({
       where: { id },
     });

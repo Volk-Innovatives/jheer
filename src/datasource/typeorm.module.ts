@@ -1,31 +1,31 @@
-import { DataSource } from "typeorm";
-import { Global, Module } from "@nestjs/common";
+import { DataSource } from 'typeorm';
+import { Global, Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
-@Global() // makes the module available globally for other modules once imported in the app modules
+@Global()
 @Module({
   imports: [],
   providers: [
     {
-      provide: DataSource, // add the datasource as a provider
-      inject: [],
-      useFactory: async () => {
-        // using the factory function to create the datasource instance
+      provide: DataSource,
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => {
         try {
           const dataSource = new DataSource({
-            type: "postgres",
-            host: "localhost",
-            port: 5432,
-            username: "jheer_sales",
-            password: "jheer_sales",
-            database: "jheer_sales_db",
+            type: 'postgres',
+            host: config.get<string>('DB_HOST'),
+            port: parseInt(config.get<string>('DB_PORT', '5432')),
+            username: config.get<string>('DB_USER'),
+            password: config.get<string>('DB_PASSWORD'),
+            database: config.get<string>('DB_NAME'),
             synchronize: true,
-            entities: [`${__dirname}/../**/**.entity{.ts,.js}`], // this will automatically load all entity file in the src folder
+            entities: [`${__dirname}/../**/**.entity{.ts,.js}`],
           });
-          await dataSource.initialize(); // initialize the data source
-          console.log("Database connected successfully");
+          await dataSource.initialize();
+          console.log('Database connected successfully');
           return dataSource;
         } catch (error) {
-          console.log("Error connecting to database");
+          console.log('Error connecting to database');
           throw error;
         }
       },

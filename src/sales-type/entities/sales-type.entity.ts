@@ -1,17 +1,19 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToMany,
 } from "typeorm";
+import { Sales } from "../../sales/entities/sales.entity";
 
 @ObjectType()
 @Entity("sales_type")
 export class SalesType {
-  @Field()
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Field()
   @Column()
@@ -20,4 +22,8 @@ export class SalesType {
   @Field()
   @CreateDateColumn()
   createdAt: Date;
+
+  @Field(() => [Sales], { nullable: true })
+  @OneToMany(() => Sales, (sales) => sales.salesType)
+  sales: Sales[];
 }

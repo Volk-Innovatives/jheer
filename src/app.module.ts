@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ConfigModule } from '@nestjs/config';
 import { SalesTypeModule } from './sales-type/sales-type.module';
 import { TypeOrmModule } from './datasource/typeorm.module';
 import { PaymentModeModule } from './payment-mode/payment-mode.module';
@@ -16,6 +17,9 @@ import { SalesModule } from './sales/sales.module';
       driver: ApolloDriver,
       autoSchemaFile: (process.cwd(), 'src/schema.gql'), // Automatically generates the schema
       playground: true,
+    }),
+     ConfigModule.forRoot({
+      isGlobal: true, // Makes env variables available app-wide
     }),
     TypeOrmModule,
     SalesTypeModule,

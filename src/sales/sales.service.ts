@@ -13,14 +13,19 @@ export class SalesService {
   ) {}
 
   findAll(): Promise<Sales[]> {
-    return this.salesRepository.find();
+    return this.salesRepository.find({
+      relations: ['salesType', 'paymentMode']
+    });
   }
 
-  async findOne(id: number): Promise<Sales> {
+  async findOne(id: string): Promise<Sales> {
     if (!id) {
       throw new Error("Sales ID is required");
     }
-    const result = await this.salesRepository.findOne({ where: { id } });
+    const result = await this.salesRepository.findOne({ 
+      where: { id },
+      relations: ['salesType', 'paymentMode']
+    });
     if (!result) {
       throw new Error("Sales not found");
     }
@@ -32,7 +37,7 @@ export class SalesService {
     return this.salesRepository.save(sales);
   }
   async update(
-    id: number,
+    id: string,
     updateSalesDto: UpdateSalesDto
   ): Promise<Sales> {
     const sales = await this.salesRepository.findOne({ where: { id } });
@@ -50,7 +55,7 @@ export class SalesService {
     return this.salesRepository.save(sales);
   }
 
-  async delete(id: number): Promise<String> {
+  async delete(id: string): Promise<String> {
     const sales = await this.salesRepository.findOne({ where: { id } });
     if (!sales) {
       throw new Error("Sales not found");

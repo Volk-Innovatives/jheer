@@ -17,7 +17,7 @@ export class VendorService {
         return this.vendorRepository.find();
     }
 
-    async findOne(id: number): Promise<Vendor> {
+    async findOne(id: string): Promise<Vendor> {
     if (!id) {
         throw new Error("Vendor ID is required");
     }
@@ -34,7 +34,7 @@ export class VendorService {
     return this.vendorRepository.save(vendor);
     }
 
-    async update(id: number, updateVendorDto: UpdateVendorDto): Promise<Vendor> {
+    async update(id: string, updateVendorDto: UpdateVendorDto): Promise<Vendor> {
         const staff = await this.vendorRepository.findOne({ where: { id } });
         if (!staff) {
             throw new Error("Vendor ID not found");
@@ -55,7 +55,7 @@ export class VendorService {
         return this.vendorRepository.save(staff);
     }
 
-    async delete(id: number): Promise<String> {
+    async delete(id: string): Promise<String> {
         const vendor = await this.vendorRepository.findOne({ where: { id } });
         if (!vendor) {
           throw new Error("Vendor ID not found");

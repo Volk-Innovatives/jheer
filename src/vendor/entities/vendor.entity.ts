@@ -1,19 +1,21 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Expense } from "src/expense/entities/expense.entity";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn
+  DeleteDateColumn,
+  OneToMany
 } from "typeorm";
 
 @ObjectType()
 @Entity("vendor")
 export class Vendor {
-  @Field()
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Field()
   @Column()
@@ -66,4 +68,8 @@ export class Vendor {
   @Field()
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @Field(() => [Expense])
+  @OneToMany(() => Expense, (expense) => expense.vendor)
+  expenses: Expense[];
 }

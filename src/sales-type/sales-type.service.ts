@@ -16,7 +16,7 @@ export class SalesTypeService {
     return this.salesTypeRepository.find();
   }
 
-  async findOne(id: number): Promise<SalesType> {
+  async findOne(id: string): Promise<SalesType> {
     if (!id) {
       throw new Error("Sales Type ID is required");
     }
@@ -32,7 +32,7 @@ export class SalesTypeService {
     return this.salesTypeRepository.save(salesType);
   }
   async update(
-    id: number,
+    id: string,
     updateSalesTypeDto: UpdateSalesTypeDto
   ): Promise<SalesType> {
     const salesType = await this.salesTypeRepository.findOne({ where: { id } });
@@ -46,7 +46,7 @@ export class SalesTypeService {
     return this.salesTypeRepository.save(salesType);
   }
 
-  async delete(id: number): Promise<String> {
+  async delete(id: string): Promise<String> {
     const salesType = await this.salesTypeRepository.findOne({ where: { id } });
     if (!salesType) {
       throw new Error("Sales Type not found");

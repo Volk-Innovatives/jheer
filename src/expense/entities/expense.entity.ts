@@ -1,10 +1,14 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { PaymentMode } from "src/payment-mode/entities/payment-mode.entity";
+import { Vendor } from "src/vendor/entities/vendor.entity";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 @ObjectType()
@@ -12,7 +16,7 @@ import {
 export class Expense {
   @Field()
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Field()
   @Column()
@@ -30,6 +34,11 @@ export class Expense {
   @Column()
   vendor_id: number;
 
+  @Field(() => Vendor)
+  @ManyToOne(() => Vendor, { eager: true })
+  @JoinColumn({ name: "vendor_id" })
+  vendor: Vendor;
+
   @Field()
   @Column()
   cheque_no: string;
@@ -37,6 +46,12 @@ export class Expense {
   @Field()
   @Column()
   payment_mode_id: number;
+
+  @Field(() => PaymentMode)
+  @ManyToOne(() => PaymentMode, { eager: true })
+  @JoinColumn({ name: "payment_mode_id" })
+  paymentMode: PaymentMode;
+  
 
   @Field()
   @Column()

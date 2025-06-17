@@ -2,47 +2,8 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type SalesType {
-  id: Float!
-  name: String!
-  createdAt: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type PaymentMode {
-  id: Float!
-  name: String!
-  createdAt: DateTime!
-}
-
-type StaffAdvance {
-  id: Float!
-  date: DateTime!
-  amount: Float!
-  staff_id: Float!
-  status: String!
-  createdAt: DateTime!
-}
-
-type Staff {
-  id: ID!
-  name: String!
-  email: String!
-  contact: Float!
-  secondaryContact: Float!
-  citizenship: String!
-  bankAccount: String!
-  bankQR: String!
-  salary: Float!
-  createdAt: DateTime!
-}
-
 type Vendor {
-  id: Float!
+  id: ID!
   name: String!
   pan_no: String!
   contact_person: String!
@@ -56,16 +17,24 @@ type Vendor {
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime!
+  expenses: [Expense!]!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Expense {
-  id: Float!
+  id: String!
   name: String!
   date: String!
   amount: Float!
   vendor_id: Float!
+  vendor: Vendor!
   cheque_no: String!
   payment_mode_id: Float!
+  paymentMode: PaymentMode!
   due_date: String!
   status: Boolean!
   bill_no: String!
@@ -73,15 +42,56 @@ type Expense {
   updatedAt: DateTime!
 }
 
+type PaymentMode {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  sales: [Sales!]
+  expenses: [Expense!]
+}
+
 type Sales {
-  id: Float!
+  id: ID!
   date: DateTime!
   amount: Float!
   remarks: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  salesType: SalesType!
   salesTypeId: Float!
+  paymentMode: PaymentMode!
   paymentModeId: Float!
+}
+
+type SalesType {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  sales: [Sales!]
+}
+
+type Staff {
+  id: ID!
+  name: String!
+  email: String!
+  contact: Float!
+  secondaryContact: Float!
+  citizenship: String!
+  bankAccount: String!
+  bankQR: String!
+  salary: Float!
+  createdAt: DateTime!
+  staffAdvance: [StaffAdvance!]!
+}
+
+type StaffAdvance {
+  id: ID!
+  date: DateTime!
+  amount: Float!
+  staff_id: Float!
+  status: String!
+  createdAt: DateTime!
+  staff: Staff!
 }
 
 type Query {

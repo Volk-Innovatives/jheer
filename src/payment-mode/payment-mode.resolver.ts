@@ -13,7 +13,7 @@ export class PaymentModeResolver {
   }
 
   @Query(() => PaymentMode, { name: "getPaymentMode" })
-  findOne(@Args("id", { type: () => Int }) id: number): Promise<PaymentMode> {
+  findOne(@Args("id", { type: () => Int }) id: string): Promise<PaymentMode> {
     return this.paymentModeService.findOne(id);
   }
 
@@ -27,7 +27,7 @@ export class PaymentModeResolver {
   // update PaymentMode by ID
   @Mutation(() => PaymentMode, { name: "updatePaymentMode" })
   async updatePaymentMode(
-    @Args("id", { type: () => Int }) id: number,
+    @Args("id", { type: () => Int }) id: string,
     @Args("updatePaymentModeInput") updatePaymentModeDto: CreatePaymentModeDto
   ): Promise<PaymentMode> {
     return this.paymentModeService.update(id, updatePaymentModeDto);
@@ -35,7 +35,7 @@ export class PaymentModeResolver {
 
   @Mutation(() => String, { name: "deletePaymentMode" })
   async deletePaymentMode(
-    @Args("id", { type: () => Int }) id: number
+    @Args("id", { type: () => Int }) id: string
   ): Promise<String> {
     return this.paymentModeService.delete(id);
   }
