@@ -70,15 +70,6 @@ type SalesType {
   sales: [Sales!]
 }
 
-type StaffAdvance {
-  id: ID!
-  date: DateTime!
-  amount: Float!
-  staff_id: Float!
-  status: String!
-  createdAt: DateTime!
-}
-
 type Staff {
   id: ID!
   name: String!
@@ -90,6 +81,17 @@ type Staff {
   bankQR: String!
   salary: Float!
   createdAt: DateTime!
+  staffAdvance: [StaffAdvance!]!
+}
+
+type StaffAdvance {
+  id: ID!
+  date: DateTime!
+  amount: Float!
+  staff_id: Float!
+  status: String!
+  createdAt: DateTime!
+  staff: Staff!
 }
 
 type Query {
